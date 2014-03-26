@@ -6,11 +6,6 @@ before_save :ensure_authentication_token
          :recoverable, :rememberable, :trackable, :validatable,
          :token_authenticatable,:confirmable, :lockable
 
- has_many :organizations_admins
- has_many :game_admins
- has_many :follow_organizations
- has_many :follow_teams
-
 def skip_confirmation!
   self.confirmed_at = Time.now
 end

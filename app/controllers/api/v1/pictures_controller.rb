@@ -1,4 +1,4 @@
-class Api::V1::TasksController < ApplicationController
+class Api::V1::PicturesController < ApplicationController
   skip_before_filter :verify_authenticity_token,
                      :if => Proc.new { |c| c.request.format == 'application/json' }
 
@@ -20,5 +20,17 @@ class Api::V1::TasksController < ApplicationController
                                }
                     }
 
+  end
+
+
+  def create
+
+    render :status => 200,
+           :json => { :success => true,
+                      :info => "My Subscriptions",
+                      :data => {
+                                   "providers" => "this"
+                               }
+                    }
   end
 end

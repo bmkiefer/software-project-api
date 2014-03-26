@@ -7,10 +7,8 @@ DeviseExample::Application.routes.draw do
         post 'sessions' => 'sessions#create', :as => 'login'
         delete 'sessions' => 'sessions#destroy', :as => 'logout'
       end
-      get 'tasks' => 'tasks#index', :as => 'tasks'
-      get 'admin_games' => 'admin_games#index'  
-      get 'games' => 'games#index'
-      put 'admin_games' => 'admin_games#update'
+      get 'pictures' => 'pictures#index'  
+      post 'pictures' => 'pictures#create'
     end
   end
 
