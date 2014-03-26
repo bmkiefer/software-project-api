@@ -1,4 +1,4 @@
-class CreateAwayTeams < ActiveRecord::Migration
+class CreateContentElements < ActiveRecord::Migration
   def change
     create_table :content_elements do |t|
       t.references :poll

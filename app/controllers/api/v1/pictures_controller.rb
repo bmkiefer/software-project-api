@@ -9,13 +9,14 @@ class Api::V1::PicturesController < ApplicationController
 
   def index
 
+    content_element = ContentElement.first
 
     render :status => 200,
            :json => { :success => true,
-                      :info => "My Subscriptions",
+                      :info => "Content Element Fetched",
                       :data => {
 
-                                   "providers" => "this"
+                                   "content_element" => content_element
 
                                }
                     }
@@ -25,12 +26,14 @@ class Api::V1::PicturesController < ApplicationController
 
   def create
 
+    new_element = ContentElement.create!(:poll_id => 1 , :content_type => 1, :content_text => "cool", :picture => params[:picture])
+
+    new_element.save
+
     render :status => 200,
            :json => { :success => true,
-                      :info => "My Subscriptions",
-                      :data => {
-                                   "providers" => "this"
-                               }
+                      :info => "Content Element Created",
+                      :data => {}
                     }
   end
 end
