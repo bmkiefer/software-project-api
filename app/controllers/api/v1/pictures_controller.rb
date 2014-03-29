@@ -16,7 +16,7 @@ class Api::V1::PicturesController < ApplicationController
                       :info => "Content Element Fetched",
                       :data => {
 
-                                   "content_element" => content_element
+                                   "content_element" => content_element.picture
 
                                }
                     }
