@@ -26,7 +26,7 @@ class Api::V1::PicturesController < ApplicationController
 
   def create
 
-    new_element = ContentElement.create!(:poll_id => params[:content_element][:poll_id] , :content_type => params[:content_element][:type], :content_text => "", :picture => params[:picture])
+    new_element = ContentElement.create!(:poll_id => params[:content_element][:poll_id] , :content_type => 1, :content_text => "", :picture => params[:content_element][:picture])
     new_element.save
 
     render :status => 200,

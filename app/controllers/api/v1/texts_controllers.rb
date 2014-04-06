@@ -26,7 +26,7 @@ class Api::V1::TextsController < ApplicationController
 
   def create
 
-    new_element = ContentElement.create!(:poll_id => params[:content_element][:poll_id], :content_type => params[:content_element][:type] , :content_text => params[:content_element][:text], :picture => nil)
+    new_element = ContentElement.create!(:poll_id => params[:content_element][:poll_id], :content_type => 2 , :content_text => params[:content_element][:text], :picture => nil)
 
     new_element.save
 
