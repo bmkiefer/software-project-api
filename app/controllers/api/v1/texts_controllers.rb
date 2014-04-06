@@ -1,9 +1,9 @@
-class Api::V1::PicturesController < ApplicationController
+class Api::V1::TextsController < ApplicationController
   skip_before_filter :verify_authenticity_token,
                      :if => Proc.new { |c| c.request.format == 'application/json' }
 
   # Just skip the authentication for now
-  #  before_filter :authenticate_user!
+ #  before_filter :authenticate_user!
 
   respond_to :json
 
@@ -26,7 +26,8 @@ class Api::V1::PicturesController < ApplicationController
 
   def create
 
-    new_element = ContentElement.create!(:poll_id => params[:content_element][:poll_id] , :content_type => params[:content_element][:type], :content_text => "", :picture => params[:picture])
+    new_element = ContentElement.create!(:poll_id => params[:content_element][:poll_id], :content_type => params[:content_element][:type] , :content_text => params[:content_element][:text], :picture => nil)
+
     new_element.save
 
     render :status => 200,
