@@ -30,7 +30,7 @@ class Api::V1::PollsController < ApplicationController
     render :status => 200,
            :json => { :success => true,
                       :info => "Content Element Created",
-                      :data => { :poll => {:id => new_poll.id }   }
+                      :data => { :id => new_poll.id  }
                     }
   end
 end
