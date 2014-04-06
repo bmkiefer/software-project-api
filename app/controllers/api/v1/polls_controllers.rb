@@ -26,14 +26,11 @@ class Api::V1::PollsController < ApplicationController
 
   def create
 
-    new_element = ContentElement.create!(:poll_id => 1 , :content_type => 1, :content_text => "cool", :picture => params[:picture])
-
-    new_element.save
-
+    new_poll = Poll.create!( :description => params[:poll][:description] , :display_type => 1).pluck(:id)
     render :status => 200,
            :json => { :success => true,
                       :info => "Content Element Created",
-                      :data => {}
+                      :data => { :poll => {:id => new_poll.id }   }
                     }
   end
 end
