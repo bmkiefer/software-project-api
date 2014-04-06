@@ -26,7 +26,7 @@ class Api::V1::PollsController < ApplicationController
 
   def create
 
-    new_poll = Poll.create!( :description => params[:poll][:description] , :display_type => 1).pluck(:id)
+    new_poll = Poll.create!( :description => params[:poll][:description] , :display_type => 1)
     render :status => 200,
            :json => { :success => true,
                       :info => "Content Element Created",
