@@ -33,7 +33,6 @@ class Api::V1::PicturesController < ApplicationController
       file.binmode
       file.write decoded_file
       file.close
-      @user.profile_pic =  file
       new_element = ContentElement.create!(:poll_id => params[:content_element][:poll_id] , :content_type => 1, :content_text => "", :picture => file)
     ensure
       file.unlink
