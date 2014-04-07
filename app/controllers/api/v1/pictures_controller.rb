@@ -43,7 +43,7 @@ class Api::V1::PicturesController < ApplicationController
    StringIO.open(Base64.decode64(params[:content_element][:picture])) do |data|
        data.class.class_eval { attr_accessor :original_filename, :content_type }
       data.original_filename = "image_name.jpg"
-      data.content_type = "image/jpeg"
+      data.content_type = "application/octet-stream" # "image/jpeg"
       new_element = ContentElement.create!(:poll_id => params[:content_element][:poll_id] , :content_type => 1, :content_text => "", :picture => data)
    end
 
