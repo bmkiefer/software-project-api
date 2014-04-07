@@ -25,13 +25,25 @@ class Api::V1::PicturesController < ApplicationController
 
 
   def create
-    poll_id = params[:poll_id].to_i
-    new_element = ContentElement.create!(:poll_id => poll_id , :content_type => 1, :content_text => "", :picture => params[:picture])
-    new_element.save
+
+    decoded_file = Base64.decode64(params[:content_element][:picture])
+    
+    begin
+      file = Tempfile.new(['test', '.jpg']) 
+      file.binmode
+      file.write decoded_file
+      file.close
+      @user.profile_pic =  file
+      new_element = ContentElement.create!(:poll_id => params[:content_element][:poll_id] , :content_type => 1, :content_text => "", :picture => file)
+    ensure
+      file.unlink
+    end
+
+    # new_element = ContentElement.create!(:poll_id => poll_id , :content_type => 1, :content_text => "", :picture => params[:picture])
 
     render :status => 200,
            :json => { :success => true,
-                      :info => "Content Element Created",
+                      :info => "Content Picture Created",
                       :data => {}
                     }
   end
