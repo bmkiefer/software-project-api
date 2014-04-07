@@ -25,7 +25,7 @@ class Api::V1::PicturesController < ApplicationController
 
 
   def create
-    poll_id = params[:content_element][:poll_id]
+    poll_id = params[:poll_id].to_i
     new_element = ContentElement.create!(:poll_id => poll_id , :content_type => 1, :content_text => "", :picture => params[:picture])
     new_element.save
 
