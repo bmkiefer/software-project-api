@@ -7,6 +7,6 @@ class ContentElement < ActiveRecord::Base
     medium: '300x300>'
   }
 
-  validates_attachment_content_type :picture, :content_type => "application/octet-stream"  #/\Aimage\/.*\Z/
+  validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 
 end
