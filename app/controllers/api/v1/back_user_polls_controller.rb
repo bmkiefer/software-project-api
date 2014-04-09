@@ -13,7 +13,17 @@ class Api::V1::BackUserPollsController < ApplicationController
 
     if total_polls > 0
 
-    my_poll = Poll.where.not(:created => nil).where(:user_id => current_user.id).first 
+    my_polls = Poll.where.not(:created => nil).where(:user_id => current_user.id).pluck(:id)
+
+    index_found = my_polls.index(params[:poll][:id])
+
+    if index_found == 0
+	index_query = my_polls.length - 1
+    else
+	index_query = index_found - 1
+    end
+
+    my_poll = Poll.find(my_polls[index_query])
 
     my_content =  ContentElement.where(:poll_id => my_poll.id)
 

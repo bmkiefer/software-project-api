@@ -12,8 +12,18 @@ class Api::V1::NextUserPollsController < ApplicationController
     total_polls = Poll.where.not(:created => nil).where(:user_id => current_user.id).length
 
     if total_polls > 0
+				     
+    my_polls = Poll.where.not(:created => nil).where(:user_id => current_user.id).pluck(:id)
 
-    my_poll = Poll.where.not(:created => nil).where(:user_id => current_user.id).first 
+    index_found = my_polls.index(params[:poll][:id])
+
+    if index_found == my_polls.length - 1
+        index_query = 0
+    else
+        index_query = index_found + 1
+    end
+
+    my_poll = Poll.find(my_polls[index_query])
 
     my_content =  ContentElement.where(:poll_id => my_poll.id)
 
