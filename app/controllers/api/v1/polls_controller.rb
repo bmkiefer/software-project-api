@@ -9,7 +9,7 @@ class Api::V1::PollsController < ApplicationController
 
   def index
 
-    my_poll = Poll.where(47)
+    my_poll = Poll.find(47)
 
     my_content =  ContentElement.where(:poll_id => my_poll.id)
 
