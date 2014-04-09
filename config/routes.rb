@@ -7,7 +7,6 @@ DeviseExample::Application.routes.draw do
         post 'sessions' => 'sessions#create', :as => 'login'
         delete 'sessions' => 'sessions#destroy', :as => 'logout'
       end
-      get 'pictures' => 'pictures#index'  
       post 'pictures' => 'pictures#create'
       get 'polls'  => 'polls#index'
       post 'polls' => 'polls#create'
