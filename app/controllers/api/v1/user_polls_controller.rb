@@ -9,7 +9,11 @@ class Api::V1::UserPollsController < ApplicationController
 
   def index
 
-    my_poll = Poll.find(46)
+    total_polls = Poll.where(:user_id => current_user.id).length
+
+    if total_polls > 0
+
+    my_poll = Poll.where(:user_id => current_user.id).first 
 
     my_content =  ContentElement.where(:poll_id => my_poll.id)
 
@@ -28,35 +32,50 @@ class Api::V1::UserPollsController < ApplicationController
 	element2_picture = ""
     end
 
+    my_elements = ContentElement.where( :poll_id => my_poll.id).pluck(:id)
+
+    total = VotedOn.where( :content_element_id => my_elements).length
+
+    element1_count = VotedOn.where( :content_element_id => my_elements.first).length
+
+    element2_count = VotedOn.where( :content_element_id => my_elements.last).length
+
     render :status => 200,
            :json => { :success => true,
                       :info => "Poll Fetched",
                       :data => {
 				  :id => my_poll.id,
+				  :votes => total,
 				  :element1 => {
 				      :id => element1.id,
                                       :picture => element1_picture,
-                                      :text => element1.content_text
+                                      :text => element1.content_text,
+				      :votes => element1_count
 				  },
 				  :element2 => {
 				      :id => element2.id,
 				      :picture => element2_picture,
-				      :text => element2.content_text
+				      :text => element2.content_text,
+				      :votes => element2_count
 				  },
 				  :description => my_poll.description					  
                                }
                     }
 
-  end
 
+    else
 
-  def create
-
-    new_poll = Poll.create!( :description => params[:poll][:description] , :display_type => 1)
     render :status => 200,
            :json => { :success => true,
-                      :info => "Poll Created",
-                      :data => { :id => new_poll.id  }
+                      :info => "No Polls",
+                      :data => {
+                               }
                     }
+
+
+
+
+    end
+
   end
 end
