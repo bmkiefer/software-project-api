@@ -20,13 +20,13 @@ class Api::V1::UserPollsController < ApplicationController
     element1 = my_content.first
     element2 = my_content.last
 	
-    if !element1.picture.nil?
+    if !element1.picture_file_name.nil?
         element1_picture = Base64.encode64(open(element1.picture.url(:original)) { |io| io.read })
     else
     	element1_picture = ""
     end
 
-    if !element2.picture.nil?	
+    if !element2.picture_file_name.nil?	
 	element2_picture = Base64.encode64(open(element2.picture.url(:original)) { |io| io.read })
     else
 	element2_picture = ""
