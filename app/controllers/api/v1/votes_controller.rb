@@ -11,20 +11,26 @@ class Api::V1::VotesController < ApplicationController
 
     VotedOn.create!( :user_id => current_user.id, :content_element_id => params[:content_element][:id] )
 	    
-    
+    my_elements = ContentElement.where( poll_id => ContentElement.find(params[:content_element][:id]).poll_id).pluck(:id)
+
+    total = VotedOn.where( :content_element_id => my_elements).length
+
+    element1 = VotedOn.where( :content_element_id => my_elements.first).length
+
+    element2 = VotedOn.where( :content_element_id => my_elements.last).length
 
     render :status => 200,
            :json => { :success => true,
                       :info => "Vote Complete",
                       :data => {
 				 :poll =>{
-				    :votes => 19	
+				    :votes => total	
 				},
 				:element1 => {
-				    :votes => 10
+				    :votes => element1
 				},
 				:element2 => {
-				    :votes => 9
+				    :votes => element2
                                 }
 				
 				
