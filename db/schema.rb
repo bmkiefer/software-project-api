@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218033704) do
+ActiveRecord::Schema.define(version: 20140218033705) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -42,8 +42,10 @@ ActiveRecord::Schema.define(version: 20140218033704) do
   end
 
   create_table "polls", force: true do |t|
-    t.integer "display_type"
-    t.string  "description"
+    t.integer  "display_type"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created"
   end
 
   create_table "skipped_elements", force: true do |t|
