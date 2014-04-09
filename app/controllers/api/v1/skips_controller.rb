@@ -1,4 +1,4 @@
-class Api::V1::PollsController < ApplicationController
+class Api::V1::SkipsController < ApplicationController
   skip_before_filter :verify_authenticity_token,
                      :if => Proc.new { |c| c.request.format == 'application/json' }
 
@@ -6,23 +6,6 @@ class Api::V1::PollsController < ApplicationController
  #  before_filter :authenticate_user!
 
   respond_to :json
-
-  def index
-
-    content_element = ContentElement.first
-
-    render :status => 200,
-           :json => { :success => true,
-                      :info => "Content Element Fetched",
-                      :data => {
-
-                                   "content_element" => content_element.picture
-
-                               }
-                    }
-
-  end
-
 
   def create
 
