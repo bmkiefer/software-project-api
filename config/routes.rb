@@ -9,6 +9,7 @@ DeviseExample::Application.routes.draw do
       end
       get 'pictures' => 'pictures#index'  
       post 'pictures' => 'pictures#create'
+      get 'polls'  => 'polls#index'
       post 'polls' => 'polls#create'
       post 'texts' => 'texts#create'
     end
