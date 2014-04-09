@@ -9,11 +9,11 @@ class Api::V1::UserPollsController < ApplicationController
 
   def index
 
-    total_polls = Poll.where(:user_id => current_user.id).length
+    total_polls = Poll.where.not(:created => nil).where(:user_id => current_user.id).length
 
     if total_polls > 0
 
-    my_poll = Poll.where(:user_id => current_user.id).first 
+    my_poll = Poll.where.not(:created => nil).where(:user_id => current_user.id).last 
 
     my_content =  ContentElement.where(:poll_id => my_poll.id)
 
