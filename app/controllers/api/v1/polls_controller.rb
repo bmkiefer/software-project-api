@@ -9,7 +9,11 @@ class Api::V1::PollsController < ApplicationController
 
   def index
 
-    my_poll = Poll.find(47)
+    votes = ContentElement.where(:id => VotedOn.where(:user_id => current_user.id).pluck(:content_element_id)).pluck(:poll_id)
+
+    skips = SkipElement.where(:user_id => current_user.id).pluck(:poll_id)
+
+    my_poll = Poll.where.not(:user_id => current_user.id).where.not(:id => skips).where.not(:id => votes).order("created asc").first
 
     my_content =  ContentElement.where(:poll_id => my_poll.id)
 
