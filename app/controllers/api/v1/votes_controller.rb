@@ -14,7 +14,12 @@ class Api::V1::VotesController < ApplicationController
     render :status => 200,
            :json => { :success => true,
                       :info => "Vote Complete",
-                      :data => { }
+                      :data => {
+				 :poll =>{
+
+				}
+				
+			        }
                     }
   end
 end
