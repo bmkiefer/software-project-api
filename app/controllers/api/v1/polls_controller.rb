@@ -32,6 +32,7 @@ class Api::V1::PollsController < ApplicationController
            :json => { :success => true,
                       :info => "Content Element Fetched",
                       :data => {
+				  :id => my_poll.id
 				  :element1 => {
 				      :id => element1.id,
                                       :picture => element1_picture,
@@ -42,9 +43,7 @@ class Api::V1::PollsController < ApplicationController
 				      :picture => element2_picture,
 				      :text => element2.content_text
 				  },
-				  :description => my_poll.description	
-				  
-
+				  :description => my_poll.description					  
                                }
                     }
 
