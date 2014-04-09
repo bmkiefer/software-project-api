@@ -11,7 +11,7 @@ class Api::V1::VotesController < ApplicationController
 
     VotedOn.create!( :user_id => current_user.id, :content_element_id => params[:content_element][:id] )
 	    
-    my_elements = ContentElement.where( poll_id => ContentElement.find(params[:content_element][:id]).poll_id).pluck(:id)
+    my_elements = ContentElement.where( :poll_id => ContentElement.find(params[:content_element][:id]).poll_id).pluck(:id)
 
     total = VotedOn.where( :content_element_id => my_elements).length
 
