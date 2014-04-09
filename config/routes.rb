@@ -13,7 +13,7 @@ DeviseExample::Application.routes.draw do
       post 'texts' => 'texts#create'
       post 'skips' => 'skips#create'
       post 'votes' => 'votes#create'
-      get 'user_polls' => 'user_polls#create'
+      get 'user_polls' => 'user_polls#index'
       post 'back_user_polls' => 'back_user_polls#create'
       post 'next_user_polls' => 'next_user_polls#create'
     end
