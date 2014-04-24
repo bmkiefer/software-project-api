@@ -1,8 +1,8 @@
 
 require_relative '../spec/spec_helper'
 
-#spec/requests/api/v1/tasks_spec.rb
-describe "Sessions API" do
+#spec/requests/api/v1/polls_spec.rb
+describe "Polls API" do
 
   context 'happy routes' do
 

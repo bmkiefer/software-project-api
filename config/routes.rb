@@ -16,6 +16,8 @@ DeviseExample::Application.routes.draw do
       get 'user_polls' => 'user_polls#index'
       post 'back_user_polls' => 'back_user_polls#create'
       post 'next_user_polls' => 'next_user_polls#create'
+      get 'own_polls' => 'own_polls#show'	
+      post 'own_polls' => 'own_polls#index'
     end
   end
 
