@@ -9,7 +9,7 @@ class Api::V1::SearchUsersController < ApplicationController
 
   def create
    search_condition = "%" + params[:search][:keyword] + "%"
-    users = User.where('name ILIKE ?', search_condition).pluck(:id, :name)
+    users = User.where('name ILIKE ?', search_condition).map { |e| { id: e.id, name: e.name } }
 
     render :status => 200,
       :json => { 
