@@ -18,6 +18,7 @@ DeviseExample::Application.routes.draw do
       post 'next_user_polls' => 'next_user_polls#create'
       get 'own_polls' => 'own_polls#show'	
       post 'own_polls' => 'own_polls#index'
+      delete 'own_polls' => 'own_polls#delete'
     end
   end
 
