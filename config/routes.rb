@@ -19,6 +19,10 @@ DeviseExample::Application.routes.draw do
       get 'own_polls' => 'own_polls#show'	
       post 'own_polls' => 'own_polls#index'
       delete 'own_polls' => 'own_polls#delete'
+      post 'follow_users' => 'follow_users#create'
+      post 'search_users' => 'search_users#create'
+      get 'followers' => 'followers#index'
+      get 'followed' => 'followed#index'
     end
   end
 
