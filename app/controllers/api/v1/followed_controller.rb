@@ -9,7 +9,7 @@ class Api::V1::FollowedController < ApplicationController
 
   def index
 
-    my_follows = current_user.followed_users.pluck(:id, :name)
+    my_follows = current_user.followed_users.map { |e| { id: e.id, name: e.name } }
 
     render :status => 200,
            :json => { :success => true,
