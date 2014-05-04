@@ -7,7 +7,7 @@ class Api::V1::SearchUsersController < ApplicationController
 
    respond_to :json
 
-  def index
+  def create
    search_condition = "%" + params[:search][:keyword] + "%"
     users = User.where('name ILIKE ?', search_condition).pluck(:id, :name)
 
