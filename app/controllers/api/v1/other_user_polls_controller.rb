@@ -32,22 +32,7 @@ class Api::V1::OtherUserPollsController < ApplicationController
                     }
   end
 
-  def delete
-        
-    Poll.find(params[:poll][:id]).delete
-
-    render :status => 200,
-           :json => { :success => true,
-                      :info => "Poll Deleted",
-                      :data => { }
-                    }
-  end
-
   def index
-
-    total_polls = Poll.where.not(:created => nil).where(:user_id => current_user.id).length
-
-    if total_polls > 0
 
     my_poll = Poll.find(params[:poll][:id])
 
@@ -97,21 +82,6 @@ class Api::V1::OtherUserPollsController < ApplicationController
 				  :description => my_poll.description					  
                                }
                     }
-
-
-    else
-
-    render :status => 200,
-           :json => { :success => true,
-                      :info => "No Polls",
-                      :data => {
-                               }
-                    }
-
-
-
-
-    end
 
   end
 end
