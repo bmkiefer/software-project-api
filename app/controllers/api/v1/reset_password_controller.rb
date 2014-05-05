@@ -10,7 +10,7 @@ class Api::V1::ResetPasswordController < ApplicationController
   def create
 	user = User.find_by_email(params[:email])
 
-	if change.hidden_flag != nil
+	if user != nil
 	  user.send_reset_password_instructions
 	end
 
