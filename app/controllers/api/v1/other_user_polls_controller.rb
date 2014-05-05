@@ -20,10 +20,13 @@ class Api::V1::OtherUserPollsController < ApplicationController
 
     end
     
+    user = User.find(params[:user][:id])
+
     render :status => 200,
            :json => { :success => true,
                       :info => "User's Polls",
                       :data => {
+				 :username => user.name,
 				 :other_polls => other_polls
                                }
                     }
