@@ -24,7 +24,8 @@ DeviseExample::Application.routes.draw do
       get 'followers' => 'followers#index'
       get 'followed' => 'followed#index'
       post 'other_user_polls' => 'other_user_polls#show'	
-      put 'other_user_polls' => 'other_user_polls#index'	
+      put 'other_user_polls' => 'other_user_polls#index'
+      post 'reset_password' => 'reset_password#create'	
     end
   end
 
