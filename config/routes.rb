@@ -23,6 +23,8 @@ DeviseExample::Application.routes.draw do
       post 'search_users' => 'search_users#create'
       get 'followers' => 'followers#index'
       get 'followed' => 'followed#index'
+      post 'other_user_polls' => 'other_user_polls#show'	
+      put 'other_user_polls' => 'other_user_polls#index'	
     end
   end
 
