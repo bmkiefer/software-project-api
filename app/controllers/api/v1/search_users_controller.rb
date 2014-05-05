@@ -9,7 +9,7 @@ class Api::V1::SearchUsersController < ApplicationController
 
   def create
    search_condition = "%" + params[:search][:keyword] + "%"
-    users = User.where('name ILIKE ?', search_condition).map { |e| { id: e.id, name: e.name } }
+    users = User.where.not(:id => current_user.id).where('name ILIKE ?', search_condition).map { |e| { id: e.id, name: e.name } }
     
     users.each do |user|
 	found_user = User.find(user[:id])
